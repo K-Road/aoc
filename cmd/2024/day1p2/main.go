@@ -4,11 +4,11 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
-	"math"
 	"os"
-	"sort"
 	"strconv"
 	"strings"
+
+	"github.com/K-Road/aoc/pkg/utils"
 )
 
 func main() {
@@ -54,18 +54,21 @@ func main() {
 		fmt.Printf("Error reading file %v\n", err)
 	}
 
-	fmt.Println(left)
-	fmt.Println(right)
+	// fmt.Println(left)
+	// fmt.Println(right)
 
-	sort.Ints(left)
-	sort.Ints(right)
+	//sort.Ints(left)
+	//sort.Ints(right)
 
-	fmt.Println(left)
-	fmt.Println(right)
+	counts := utils.CountOccurances(right)
+
+	// fmt.Println(left)
+	// fmt.Println(right)
 
 	sum := 0
 	for i := range left {
-		sum += int(math.Abs(float64(left[i] - right[i])))
+		fmt.Println(counts[left[i]])
+		sum += left[i] * counts[left[i]]
 	}
 
 	score := 0
