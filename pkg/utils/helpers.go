@@ -33,17 +33,23 @@ func MatrixImport(file *os.File) [][]int {
 			row = append(row, num)
 		}
 		nums = append(nums, row)
-
 	}
-
 	if err := scanner.Err(); err != nil {
 		fmt.Printf("Error reading file %v\n", err)
 	}
-
 	fmt.Println("Input:")
 	for _, row := range nums {
 		fmt.Println(row)
 	}
-
 	return nums
+}
+
+func FileImport(file *os.File) string {
+	var response string
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		input := scanner.Text()
+		response += input
+	}
+	return response
 }
